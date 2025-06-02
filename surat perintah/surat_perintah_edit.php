@@ -21,12 +21,12 @@ if (isset($_POST['simpan'])) {
         move_uploaded_file($upload_tmp, $upload_dir . $upload_file);
         // Update data dengan file baru
         $query = mysqli_query($konek, "UPDATE surat_perintah_tugas 
-        SET no_surat='$no_surat', tanggal='$tanggal', tujuan='$tujuan', perihal='$perihal', keterangan='$keterangan', staff_id='$staff_id', upload_file='$upload_file'
+        SET no_surat='$no_surat', tanggal='$tanggal', tujuan='$tujuan', perihal='$perihal', keterangan='$keterangan', staff_id='$staff_id', upload_file='$upload_file', status='Diajukan'
         WHERE id='$id'");
     } else {
         // Jika tidak ada file baru, tetap gunakan file yang ada
         $query = mysqli_query($konek, "UPDATE surat_perintah_tugas 
-        SET no_surat='$no_surat', tanggal='$tanggal', tujuan='$tujuan', perihal='$perihal',  staff_id='$staff_id', keterangan='$keterangan'
+        SET no_surat='$no_surat', tanggal='$tanggal', tujuan='$tujuan', perihal='$perihal',  staff_id='$staff_id', keterangan='$keterangan', status='Diajukan'
         WHERE id='$id'");
     }
 

@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Data Surat Masuk</h5>
-            <?php if ($_SESSION['role'] != 'pimpinan') : ?>
+            <?php if ($_SESSION['role'] != 'viewer') : ?>
                 <a href="?page=surat_masuk_add" class="btn btn-primary mb-3"><i class="ti ti-plus"></i> Tambah Data</a>
             <?php endif; ?>
             <table class="table table-bordered table-hover">
@@ -19,7 +19,8 @@
                         <th>Kategori</th>
                         <th>Tanggal Terima</th>
                         <th>File Upload</th> <!-- Kolom untuk menampilkan file upload -->
-                        <?php if ($_SESSION['role'] != 'pimpinan') : ?>
+                        <?php if ($_SESSION['role'] != 'viewer') : ?>
+                            <th>Status</th>
                             <th>Aksi</th>
                         <?php endif; ?>
                     </tr>
@@ -49,11 +50,17 @@
                         echo "</td>";
 
                         // Kondisi untuk menampilkan tombol berdasarkan role
-                        if ($_SESSION['role'] != 'pimpinan') {  // Pimpinan tidak melihat tombol
+                        if ($_SESSION['role'] != 'viewer') {  // Hanya user dengan role selain yang bisa melihat tombol
+                            if ($_SESSION['role'] == 'admin' && $data['status'] == 'Diajukan') {
+                                echo "<td><a href='?page=surat_masuk_status&id={$data['id']}' class='btn btn-warning btn-sm' onclick='return confirm(\"Ingin Mengubah status?\")'>Ubah Status: {$data['status']}</a></td>";
+                            } else if ($_SESSION['role'] != 'viewer') {
+                                echo "<td>{$data['status']}</td>";
+                            }
+                            // Kondisi untuk menampilkan tombol berdasarkan role
                             echo "<td>
-                <a href='?page=surat_masuk_edit&id={$data['id']}' class='btn btn-warning btn-sm'>Edit</a>
-                <a href='?page=surat_masuk_delete&id={$data['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
-                </td>";
+                        <a href='?page=surat_masuk_edit&id={$data['id']}' class='btn btn-warning btn-sm'>Edit</a>
+                        <a href='?page=surat_masuk_delete&id={$data['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
+                        </td>";
                         }
                         $no++;
                         echo "</tr>";

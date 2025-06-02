@@ -15,8 +15,8 @@ if (isset($_POST['simpan'])) {
     // Memindahkan file ke direktori yang diinginkan
     if (move_uploaded_file($upload_tmp, $upload_dir . $upload_file)) {
         // Jika upload berhasil, simpan data ke database
-        $query = mysqli_query($konek, "INSERT INTO surat_masuk (nomor_surat, tanggal, pengirim, perihal, kategori_id, tanggal_terima, upload_file)
-        VALUES ('$nomor_surat', '$tanggal', '$pengirim', '$perihal', '$kategori_id', '$tanggal_terima', '$upload_file')");
+        $query = mysqli_query($konek, "INSERT INTO surat_masuk (nomor_surat, tanggal, pengirim, perihal, kategori_id, tanggal_terima, upload_file, status)
+        VALUES ('$nomor_surat', '$tanggal', '$pengirim', '$perihal', '$kategori_id', '$tanggal_terima', '$upload_file', 'Diajukan')");
 
         if ($query) {
             echo "<script>alert('Data berhasil ditambahkan!');</script>";

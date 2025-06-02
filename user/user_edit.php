@@ -8,7 +8,7 @@ if (isset($_POST['simpan'])) {
     $role = $_POST['role'];
     $staff_id = $_POST['staff_id'];
 
-    $query = mysqli_query($konek, "UPDATE users password=MD5('$password'), role='$role', staff_id='$staff_id' WHERE id='$id'");
+    $query = mysqli_query($konek, "UPDATE users SET password=MD5('$password'), role='$role', staff_id='$staff_id' WHERE id='$id'");
 
     if ($query) {
         echo "<script>alert('Data berhasil diubah!');</script>";
@@ -43,10 +43,10 @@ if (isset($_POST['simpan'])) {
                 <div class="mb-3">
                     <label for="role" class="form-label">Role</label>
                     <select name="role" class="form-control" required>
-                        <option value="<?= $data['role'] ?>"><?= $data['role'] ?></option>
+                        <option value="<?= $data['role'] ?>">Role</option>
                         <option value="admin">Admin</option>
-                        <option value="staff">Staff</option>
-                        <option value="pimpinan">Pimpinan</option>
+                        <option value="operator">Operator</option>
+                        <option value="viewer">Viewer</option>
 
                     </select>
                 </div>

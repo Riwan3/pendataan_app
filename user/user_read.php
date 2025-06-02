@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Data Pengguna</h5>
-            <?php if ($_SESSION['role'] != 'pimpinan') : ?>
+            <?php if ($_SESSION['role'] == 'admin') : ?>
                 <a href="?page=user_add" class="btn btn-primary mb-3"><i class="ti ti-plus"></i> Tambah Data</a>
             <?php endif; ?>
             <table class="table table-bordered table-hover">
@@ -13,7 +13,9 @@
                         <th>Role</th>
                         <th>Nama Staff</th>
                         <th>NIP</th>
-                        <th>Aksi</th>
+                        <?php if ($_SESSION['role'] == 'admin') : ?>
+                            <th>Aksi</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,17 +32,20 @@
                             <td>" . htmlspecialchars($data['password']) . "</td>
                             <td>" . htmlspecialchars($data['role']) . "</td>
                             <td>" . htmlspecialchars($data['nama']) . "</td>
-                            <td>" . htmlspecialchars($data['nip']) . "</td>
-                            <td>
-                                <a href='?page=user_edit&id=" . $data['id'] . "' class='btn btn-warning btn-sm'>Edit</a>
-                                <a href='?page=user_delete&id=" . $data['id'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
-                            </td>
-                        </tr>";
-                        $no++;
+                            <td>" . htmlspecialchars($data['nip']) . "</td>";
+                        if ($_SESSION['role'] == 'admin') {
+                            echo "
+                                <td>
+                                    <a href='?page=user_edit&id=" . $data['id'] . "' class='btn btn-warning btn-sm'>Edit</a>
+                                    <a href='?page=user_delete&id=" . $data['id'] . "' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
+                                </td>
+                            </tr>";
+                            $no++;
+                        }
                     }
 
                     // Menangani jika tidak ada data
-                    if ($no == 1) {
+                    if ($no == 0) {
                         echo "<tr><td colspan='5' class='text-center'>Tidak ada data pengguna.</td></tr>";
                     }
                     ?>

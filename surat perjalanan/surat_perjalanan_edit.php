@@ -13,7 +13,7 @@ if (isset($_POST['simpan'])) {
     $surat_perintah_id = $_POST['surat_perintah_id'];
 
     $query = mysqli_query($konek, "UPDATE surat_perjalanan_dinas 
-    SET nomor_surat='$nomor_surat', tanggal_pergi='$tanggal_pergi', tanggal_pulang='$tanggal_pulang', tempat_tujuan='$tempat_tujuan', tempat_berangkat='$tempat_berangkat', anggaran='$anggaran', surat_perintah_id='$surat_perintah_id'
+    SET nomor_surat='$nomor_surat', tanggal_pergi='$tanggal_pergi', tanggal_pulang='$tanggal_pulang', tempat_tujuan='$tempat_tujuan', tempat_berangkat='$tempat_berangkat', anggaran='$anggaran', surat_perintah_id='$surat_perintah_id', status='Diajukan'
     WHERE id='$id'");
 
     if ($query) {

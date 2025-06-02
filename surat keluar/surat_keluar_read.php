@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Data Surat Keluar</h5>
-            <?php if ($_SESSION['role'] != 'pimpinan') : ?>
+            <?php if ($_SESSION['role'] != 'viewer') : ?>
                 <a href="?page=surat_keluar_add" class="btn btn-primary mb-3"><i class="ti ti-plus"></i> Tambah Data</a>
             <?php endif; ?>
             <table class="table table-bordered table-hover">
@@ -15,7 +15,8 @@
                         <th>Perihal</th>
                         <th>Kategori Surat</th>
                         <th>Upload File</th>
-                        <?php if ($_SESSION['role'] != 'pimpinan') : ?>
+                        <?php if ($_SESSION['role'] != 'viewer') : ?>
+                            <th>Status</th>
                             <th>Aksi</th>
                         <?php endif; ?>
                     </tr>
@@ -33,15 +34,20 @@
                             <td>{$data['perihal']}</td>
                             <td>{$data['nama_kategori']}</td>
                             <td>";
+                        // Menampilkan link untuk mengunduh file jika ada
                         if (!empty($data['upload_file'])) {
                             echo "<a href='uploads/" . htmlspecialchars($data['upload_file']) . "' class='btn btn-info btn-sm' target='_blank'>Unduh</a>";
                         } else {
                             echo "Tidak ada file";
                         }
-                        // Menampilkan link untuk mengunduh file jika ada
-
-                        // Kondisi untuk menampilkan tombol berdasarkan role setelah nama_kategori
-                        if ($_SESSION['role'] != 'pimpinan') {  // Hanya user dengan role selain pimpinan yang bisa melihat tombol
+                        // kondisi saat admin bisa memperbaharui status
+                        if ($_SESSION['role'] != 'viewer') {  // Hanya user dengan role selain yang bisa melihat tombol
+                            if ($_SESSION['role'] == 'admin' && $data['status'] == 'Diajukan') {
+                                echo "<td><a href='?page=surat_keluar_status&id={$data['id']}' class='btn btn-warning btn-sm' onclick='return confirm(\"Ingin Mengubah status?\")'>Ubah Status: {$data['status']}</a></td>";
+                            } else if ($_SESSION['role'] != 'viewer') {
+                                echo "<td>{$data['status']}</td>";
+                            }
+                            // Kondisi untuk menampilkan tombol berdasarkan role
                             echo "<td>
                         <a href='?page=surat_keluar_edit&id={$data['id']}' class='btn btn-warning btn-sm'>Edit</a>
                         <a href='?page=surat_keluar_delete&id={$data['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
@@ -49,8 +55,7 @@
                         }
                         $no++;
                         echo "</tr>";
-                    }
-
+                    };
                     ?>
                 </tbody>
             </table>

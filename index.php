@@ -11,8 +11,8 @@ switch ($page) {
     case "dashboard":
         include "dashboard/dashboard_view.php";
         break;
-        // ----------------------------------------
-        // untuk folder surat masuk
+    // ----------------------------------------
+    // untuk folder surat masuk
     case "surat_masuk_read":
         include "surat masuk/surat_masuk_read.php";
         break;
@@ -25,8 +25,11 @@ switch ($page) {
     case "surat_masuk_delete":
         include "surat masuk/surat_masuk_delete.php";
         break;
-        // ----------------------------------------
-        // untuk folder surat keluar
+    case "surat_masuk_status":
+        include "surat masuk/surat_masuk_status.php";
+        break;
+    // ----------------------------------------
+    // untuk folder surat keluar
     case "surat_keluar_read":
         include "surat keluar/surat_keluar_read.php";
         break;
@@ -39,8 +42,11 @@ switch ($page) {
     case "surat_keluar_delete":
         include "surat keluar/surat_keluar_delete.php";
         break;
-        // ----------------------------------------
-        // untuk folder surat perjalanan
+    case "surat_keluar_status":
+        include "surat keluar/surat_keluar_status.php";
+        break;
+    // ----------------------------------------
+    // untuk folder surat perjalanan
     case "surat_perjalanan_read":
         include "surat perjalanan/surat_perjalanan_read.php";
         break;
@@ -53,8 +59,11 @@ switch ($page) {
     case "surat_perjalanan_delete":
         include "surat perjalanan/surat_perjalanan_delete.php";
         break;
-        // ----------------------------------------
-        // untuk folder surat perintah Tugas
+    case "surat_perjalanan_status":
+        include "surat perjalanan/surat_perjalanan_status.php";
+        break;
+    // ----------------------------------------
+    // untuk folder surat perintah Tugas
     case "surat_perintah_read":
         include "surat perintah/surat_perintah_read.php";
         break;
@@ -67,8 +76,11 @@ switch ($page) {
     case "surat_perintah_delete":
         include "surat perintah/surat_perintah_delete.php";
         break;
-        // ----------------------------------------
-        // untuk folder Kategori surat
+    case "surat_perintah_status":
+        include "surat perintah/surat_perintah_status.php";
+        break;
+    // ----------------------------------------
+    // untuk folder Kategori surat
     case "kategori_surat_read":
         include "kategori surat/kategori_surat_read.php";
         break;
@@ -81,8 +93,8 @@ switch ($page) {
     case "kategori_surat_delete":
         include "kategori surat/kategori_surat_delete.php";
         break;
-        // ----------------------------------------
-        // untuk folder Pengguna
+    // ----------------------------------------
+    // untuk folder Pengguna
     case "user_read":
         include "user/user_read.php";
         break;
@@ -95,8 +107,8 @@ switch ($page) {
     case "user_delete":
         include "user/user_delete.php";
         break;
-        // ----------------------------------------
-        // untuk folder Staff
+    // ----------------------------------------
+    // untuk folder Staff
     case "staff_read":
         include "staff/staff_read.php";
         break;
@@ -109,8 +121,8 @@ switch ($page) {
     case "staff_delete":
         include "staff/staff_delete.php";
         break;
-        // ----------------------------------------
-        // untuk folder Disposisi
+    // ----------------------------------------
+    // untuk folder Disposisi
     case "disposisi_read":
         include "disposisi/disposisi_read.php";
         break;

@@ -19,7 +19,7 @@ if (isset($_POST['simpan'])) {
         if (move_uploaded_file($upload_tmp, $upload_dir . $upload_file)) {
             // Update data dengan file baru
             $query = mysqli_query($konek, "UPDATE disposisi 
-            SET surat_masuk_id='$surat_masuk_id', staff_id='$staff_id', catatan='$catatan', tanggal_disposisi='$tanggal_disposisi', upload_file='$upload_file'
+            SET surat_masuk_id='$surat_masuk_id', staff_id='$staff_id', catatan='$catatan', tanggal_disposisi='$tanggal_disposisi', upload_file='$upload_file', status='Diajukan'
             WHERE id='$id'");
         } else {
             echo "<script>alert('File gagal diupload!');</script>";

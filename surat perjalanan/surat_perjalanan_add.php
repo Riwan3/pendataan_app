@@ -10,8 +10,8 @@ if (isset($_POST['simpan'])) {
     $surat_perintah_id = $_POST['surat_perintah_id'];
 
     // Query untuk menyimpan data
-    $query = "INSERT INTO surat_perjalanan_dinas (nomor_surat, tanggal_pergi, tanggal_pulang, tempat_tujuan, tempat_berangkat, anggaran, surat_perintah_id) 
-            VALUES ('$nomor_surat', '$tanggal_pergi', '$tanggal_pulang', '$tempat_tujuan', '$tempat_berangkat', '$anggaran', '$surat_perintah_id')";
+    $query = "INSERT INTO surat_perjalanan_dinas (nomor_surat, tanggal_pergi, tanggal_pulang, tempat_tujuan, tempat_berangkat, anggaran, surat_perintah_id, status) 
+            VALUES ('$nomor_surat', '$tanggal_pergi', '$tanggal_pulang', '$tempat_tujuan', '$tempat_berangkat', '$anggaran', '$surat_perintah_id', 'Diajukan')";
 
     // Eksekusi query
     if (mysqli_query($konek, $query)) {

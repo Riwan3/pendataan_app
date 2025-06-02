@@ -22,7 +22,7 @@ if (isset($_POST['simpan'])) {
         if (move_uploaded_file($upload_tmp, $upload_dir . $upload_file)) {
             // Update data dengan file baru
             $query = mysqli_query($konek, "UPDATE surat_masuk 
-            SET nomor_surat='$nomor_surat', tanggal='$tanggal', pengirim='$pengirim', perihal='$perihal', kategori_id='$kategori_id', tanggal_terima='$tanggal_terima', upload_file='$upload_file'
+            SET nomor_surat='$nomor_surat', tanggal='$tanggal', pengirim='$pengirim', perihal='$perihal', kategori_id='$kategori_id', tanggal_terima='$tanggal_terima', upload_file='$upload_file', status='Diajukan'
             WHERE id='$id'");
         } else {
             echo "<script>alert('File gagal diupload!');</script>";
@@ -30,7 +30,7 @@ if (isset($_POST['simpan'])) {
     } else {
         // Jika tidak ada file baru, update data tanpa mengubah file
         $query = mysqli_query($konek, "UPDATE surat_masuk 
-        SET nomor_surat='$nomor_surat', tanggal='$tanggal', pengirim='$pengirim', perihal='$perihal', kategori_id='$kategori_id', tanggal_terima='$tanggal_terima'
+        SET nomor_surat='$nomor_surat', tanggal='$tanggal', pengirim='$pengirim', perihal='$perihal', kategori_id='$kategori_id', tanggal_terima='$tanggal_terima', status='Diajukan'
         WHERE id='$id'");
     }
 

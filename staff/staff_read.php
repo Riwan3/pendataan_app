@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Data Staff</h5>
-            <?php if ($_SESSION['role'] != 'staff' && $_SESSION['role'] != 'pimpinan') : ?>
+            <?php if ($_SESSION['role'] == 'admin') : ?>
                 <a href="?page=staff_add" class="btn btn-primary mb-3"><i class="ti ti-plus"></i> Tambah Data</a>
             <?php endif; ?>
             <table class="table table-bordered table-hover">
@@ -13,7 +13,7 @@
                         <th>Nama Staff</th>
                         <th>Jabatan</th>
                         <th>Alamat</th>
-                        <?php if ($_SESSION['role'] != 'pimpinan') : ?>
+                        <?php if ($_SESSION['role'] == 'admin') : ?>
                             <th>Aksi</th>
                         <?php endif; ?>
                     </tr>
@@ -31,7 +31,7 @@
                                 <td>{$data['alamat']}</td>
                                 ";
                         // Kondisi untuk menampilkan tombol berdasarkan role setelah kolom jabatan
-                        if ($_SESSION['role'] != 'pimpinan') {
+                        if ($_SESSION['role'] == 'admin') {
                             echo "<td>
                 <a href='?page=staff_edit&id={$data['id']}' class='btn btn-warning btn-sm'>Edit</a>
                 <a href='?page=staff_delete&id={$data['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
