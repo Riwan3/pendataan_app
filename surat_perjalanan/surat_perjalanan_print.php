@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Laporan Disposisi</title>
+    <title>Laporan Surat Perjalanan Dinas</title>
 
     <style>
         @page {
@@ -71,7 +71,7 @@
 
 <body class="A3 lan">
     <section class="sheet">
-        <title>Laporan Disposisi Surat Masuk</title>
+        <title>Laporan Surat Perintah Perjalanan Dinas</title>
         <!-- Header Laporan -->
         <table style="width: 100%;">
             <tr>
@@ -90,18 +90,26 @@
         <div class="header-line"></div>
         <div style="text-align: right; margin-top: 10px;">Marabahan, <?php echo date('j F Y'); ?></div>
         <div style="text-align: center;">
-            <h2>Laporan Disposisi</h2>
+            <h2>Laporan Surat Perintah Perjalanan Dinas</h2>
         </div>
 
-        <!-- Tabel Data Disposisi -->
+        <!-- Tabel Data Surat Perjalanan Dinas -->
         <table class="tabeldatasp2d">
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>No. Surat</th>
+                    <th>Tanggal Berangkat</th>
+                    <th>Tanggal Kembali</th>
+                    <th>Tempat Tujuan</th>
+                    <th>Tempat Berangkat</th>
+                    <th>Anggaran</th>
+                    <th>No. Surat Perintah</th>
+                    <th>Tanggal Surat Perintah</th>
+                    <th>Tujuan Surat Perintah</th>
                     <th>Perihal</th>
+                    <th>Keterangan</th>
                     <th>Staff</th>
-                    <th>Catatan</th>
-                    <th>Tanggal Disposisi</th>
                 </tr>
             </thead>
             <tbody>
@@ -119,10 +127,15 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-                // Query untuk mengambil data dari tabel disposisi
-                $sql = "SELECT d.*, s.perihal, st.nama FROM disposisi d 
-                                                    LEFT JOIN surat_masuk s ON d.surat_masuk_id = s.id 
-                                                    LEFT JOIN staff st ON d.staff_id = st.id";
+
+                // Query untuk mengambil data dari tabel surat_perjalanan_dinas dan surat_perintah_tugas
+                $sql = "SELECT spd.id, spd.nomor_surat, spd.tanggal_pergi, spd.tanggal_pulang, 
+                                                                spd.tempat_tujuan, spd.tempat_berangkat, spd.anggaran, 
+                                                                spt.no_surat, spt.tanggal, spt.tujuan, spt.perihal, 
+                                                                spt.keterangan, s.nama
+                                                        FROM surat_perjalanan_dinas spd
+                                                        JOIN surat_perintah_tugas spt ON spd.surat_perintah_id = spt.id
+                                                        JOIN staff s ON spt.staff_id = s.id";
                 $result = $conn->query($sql);
                 $no = 1;
                 // Menampilkan data dalam tabel
@@ -130,14 +143,22 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
                             <td style='text-align: center;'>" . $no++ . "</td>
+                            <td style='text-align: center;'>" . $row["nomor_surat"] . "</td>
+                            <td style='text-align: center;'>" . $row["tanggal_pergi"] . "</td>
+                            <td style='text-align: center;'>" . $row["tanggal_pulang"] . "</td>
+                            <td style='text-align: center;'>" . $row["tempat_tujuan"] . "</td>
+                            <td style='text-align: center;'>" . $row["tempat_berangkat"] . "</td>
+                            <td style='text-align: center;'>" . $row["anggaran"] . "</td>
+                            <td style='text-align: center;'>" . $row["no_surat"] . "</td>
+                            <td style='text-align: center;'>" . $row["tanggal"] . "</td>
+                            <td style='text-align: center;'>" . $row["tujuan"] . "</td>
                             <td style='text-align: center;'>" . $row["perihal"] . "</td>
+                            <td style='text-align: center;'>" . $row["keterangan"] . "</td>
                             <td style='text-align: center;'>" . $row["nama"] . "</td>
-                            <td style='text-align: center;'>" . $row["catatan"] . "</td>
-                            <td style='text-align: center;'>" . $row["tanggal_disposisi"] . "</td>
                         </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='5'>No data available</td></tr>";
+                    echo "<tr><td colspan='12'>No data available</td></tr>";
                 }
 
                 // Tutup koneksi

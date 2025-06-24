@@ -7,6 +7,9 @@
     <title>Pendataan | BPKAD</title>
     <link rel="shortcut icon" type="image/png" href="assets/images/logos/favicon1.png" />
     <link rel="stylesheet" href="assets/css/styles.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/@tabler/icons-webfont@latest/tabler-icons.min.css">
+
 </head>
 
 <body>
@@ -17,7 +20,7 @@
             <!-- Sidebar scroll-->
             <div>
                 <div class="brand-logo d-flex align-items-center justify-content-between">
-                    <a href="./index.php" class="text-nowrap logo-img">
+                    <a href="?page=dashboard" class="text-nowrap logo-img">
                         <img src="assets/images/logos/baner-2048x260.jpg" width="220" alt="" />
                     </a>
                     <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -93,6 +96,14 @@
                                                     <span class="hide-menu">Surat Perintah <br> Perjalanan Dinas</span>
                                                 </a>
                                             </li>
+                                            <li class="sidebar-item">
+                                                <a class="sidebar-link" href="?page=surat_keuangan_read" aria-expanded="false">
+                                                    <span>
+                                                        <i class="ti ti-wallet"></i>
+                                                    </span>
+                                                    <span class="hide-menu">Surat Perintah <br> Pencairan Dana</span>
+                                                </a>
+                                            </li>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +122,7 @@
                                             <span class="hide-menu">LAPORAN</span>
                                         </li> -->
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="surat perintah/surat_perintah_print.php" target="_blank" aria-expanded="false">
+                                            <a class="sidebar-link" href="surat_perintah/surat_perintah_print.php" target="_blank" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-printer"></i>
                                                 </span>
@@ -127,27 +138,35 @@
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="surat masuk/surat_masuk_print.php" target="_blank" aria-expanded="false">
+                                            <a class="sidebar-link" href="surat_masuk/surat_masuk_print.php" target="_blank" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-printer"></i>
                                                 </span>
-                                                <span class="hide-menu">Laporan Surat Masuk</span>
+                                                <span class="hide-menu">Laporan <br> Surat Masuk</span>
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="surat keluar/surat_keluar_print.php" target="_blank" aria-expanded="false">
+                                            <a class="sidebar-link" href="surat_keluar/surat_keluar_print.php" target="_blank" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-printer"></i>
                                                 </span>
-                                                <span class="hide-menu">Laporan Surat Keluar</span>
+                                                <span class="hide-menu">Laporan <br> Surat Keluar</span>
                                             </a>
                                         </li>
                                         <li class="sidebar-item">
-                                            <a class="sidebar-link" href="surat perjalanan/surat_perjalanan_print.php" target="_blank" aria-expanded="false">
+                                            <a class="sidebar-link" href="surat_perjalanan/surat_perjalanan_print.php" target="_blank" aria-expanded="false">
                                                 <span>
                                                     <i class="ti ti-printer"></i>
                                                 </span>
                                                 <span class="hide-menu">Laporan Surat <br>Perjalanan</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a class="sidebar-link" href="surat_keuangan/surat_keuangan_print.php" target="_blank" aria-expanded="false">
+                                                <span>
+                                                    <i class="ti ti-printer"></i>
+                                                </span>
+                                                <span class="hide-menu">Laporan Surat <br>keuangan</span>
                                             </a>
                                         </li>
                                     <?php endif; ?>
@@ -191,6 +210,14 @@
                                     </div>
                                 </div>
                             <?php endif; ?>
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" href="?page=ocr_pencairan_dana" aria-expanded="false">
+                                    <span>
+                                        <i class="ti ti-currency-dollar"></i>
+                                    </span>
+                                    <span class="hide-menu">OCR Surat Keuangan</span>
+                                </a>
+                            </li>
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="login/logout.php" aria-expanded="false" onclick="return confirm('Ingin logout dari sistem?');">
                                     <span>

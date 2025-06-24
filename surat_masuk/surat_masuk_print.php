@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Laporan Disposisi</title>
+    <title>Laporan Surat Masuk</title>
 
     <style>
         @page {
@@ -71,7 +71,7 @@
 
 <body class="A3 lan">
     <section class="sheet">
-        <title>Laporan Disposisi Surat Masuk</title>
+        <title>Laporan Surat Masuk</title>
         <!-- Header Laporan -->
         <table style="width: 100%;">
             <tr>
@@ -90,18 +90,20 @@
         <div class="header-line"></div>
         <div style="text-align: right; margin-top: 10px;">Marabahan, <?php echo date('j F Y'); ?></div>
         <div style="text-align: center;">
-            <h2>Laporan Disposisi</h2>
+            <h2>Laporan Surat Masuk</h2>
         </div>
 
-        <!-- Tabel Data Disposisi -->
+        <!-- Tabel Data Surat Masuk -->
         <table class="tabeldatasp2d">
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>No. Surat</th>
+                    <th>Tanggal Surat</th>
+                    <th>Pengirim</th>
                     <th>Perihal</th>
-                    <th>Staff</th>
-                    <th>Catatan</th>
-                    <th>Tanggal Disposisi</th>
+                    <th>Kategori Surat</th>
+                    <th>Tanggal Terima</th>
                 </tr>
             </thead>
             <tbody>
@@ -119,10 +121,10 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-                // Query untuk mengambil data dari tabel disposisi
-                $sql = "SELECT d.*, s.perihal, st.nama FROM disposisi d 
-                                                    LEFT JOIN surat_masuk s ON d.surat_masuk_id = s.id 
-                                                    LEFT JOIN staff st ON d.staff_id = st.id";
+                // Query untuk mengambil data dari tabel surat_masuk
+                $sql = "SELECT sm.nomor_surat, sm.tanggal, sm.pengirim, sm.perihal, ks.nama_kategori, sm.tanggal_terima, sm.upload_file
+                        FROM surat_masuk sm
+                        JOIN kategori_surat ks ON sm.kategori_id = ks.id";
                 $result = $conn->query($sql);
                 $no = 1;
                 // Menampilkan data dalam tabel
@@ -130,14 +132,16 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
                             <td style='text-align: center;'>" . $no++ . "</td>
+                            <td style='text-align: center;'>" . $row["nomor_surat"] . "</td>
+                            <td style='text-align: center;'>" . $row["tanggal"] . "</td>
+                            <td style='text-align: center;'>" . $row["pengirim"] . "</td>
                             <td style='text-align: center;'>" . $row["perihal"] . "</td>
-                            <td style='text-align: center;'>" . $row["nama"] . "</td>
-                            <td style='text-align: center;'>" . $row["catatan"] . "</td>
-                            <td style='text-align: center;'>" . $row["tanggal_disposisi"] . "</td>
+                            <td style='text-align: center;'>" . $row["nama_kategori"] . "</td>
+                            <td style='text-align: center;'>" . $row["tanggal_terima"] . "</td>
                         </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='5'>No data available</td></tr>";
+                    echo "<tr><td colspan='7'>No data available</td></tr>";
                 }
 
                 // Tutup koneksi

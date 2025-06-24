@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Laporan Disposisi</title>
-
+    <title>Laporan Surat Keuangan</title>
     <style>
         @page {
             size: A3 landscape;
@@ -71,8 +70,6 @@
 
 <body class="A3 lan">
     <section class="sheet">
-        <title>Laporan Disposisi Surat Masuk</title>
-        <!-- Header Laporan -->
         <table style="width: 100%;">
             <tr>
                 <td style="width: 100px;">
@@ -90,72 +87,64 @@
         <div class="header-line"></div>
         <div style="text-align: right; margin-top: 10px;">Marabahan, <?php echo date('j F Y'); ?></div>
         <div style="text-align: center;">
-            <h2>Laporan Disposisi</h2>
+            <h2>Laporan Surat Keuangan</h2>
         </div>
 
-        <!-- Tabel Data Disposisi -->
         <table class="tabeldatasp2d">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Perihal</th>
+                    <th>No. SPM</th>
+                    <th>Tanggal Surat</th>
+                    <th>SKPD</th>
+                    <th>Kepada</th>
+                    <th>Keperluan</th>
+                    <th>Jumlah Dibayarkan</th>
                     <th>Staff</th>
-                    <th>Catatan</th>
-                    <th>Tanggal Disposisi</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                // Koneksi ke database MySQL
-                $servername = "localhost";
-                $username = "root";  // Ganti dengan username MySQL Anda
-                $password = "";      // Ganti dengan password MySQL Anda
-                $dbname = "pendataan_app";
-
-                // Buat koneksi
-                $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Cek koneksi
+                $conn = new mysqli("localhost", "root", "", "pendataan_app");
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-                // Query untuk mengambil data dari tabel disposisi
-                $sql = "SELECT d.*, s.perihal, st.nama FROM disposisi d 
-                                                    LEFT JOIN surat_masuk s ON d.surat_masuk_id = s.id 
-                                                    LEFT JOIN staff st ON d.staff_id = st.id";
+
+                $sql = "SELECT sk.*, s.nama FROM surat_keuangan sk
+                        JOIN staff s ON sk.staff_id = s.id
+                        ORDER BY sk.tanggal_surat DESC";
                 $result = $conn->query($sql);
                 $no = 1;
-                // Menampilkan data dalam tabel
+
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>
-                            <td style='text-align: center;'>" . $no++ . "</td>
-                            <td style='text-align: center;'>" . $row["perihal"] . "</td>
-                            <td style='text-align: center;'>" . $row["nama"] . "</td>
-                            <td style='text-align: center;'>" . $row["catatan"] . "</td>
-                            <td style='text-align: center;'>" . $row["tanggal_disposisi"] . "</td>
-                        </tr>";
+                                <td style='text-align: center;'>{$no}</td>
+                                <td style='text-align: center;'>{$row['nospm']}</td>
+                                <td style='text-align: center;'>{$row['tanggal_surat']}</td>
+                                <td style='text-align: center;'>{$row['skpd']}</td>
+                                <td style='text-align: center;'>{$row['kepada']}</td>
+                                <td style='text-align: center;'>{$row['keperluan_untuk']}</td>
+                                <td style='text-align: center;'>Rp " . number_format($row['jumlah_dibayarkan'], 0, ',', '.') . "</td>
+                                <td style='text-align: center;'>{$row['nama']}</td>
+                            </tr>";
+                        $no++;
                     }
                 } else {
-                    echo "<tr><td colspan='5'>No data available</td></tr>";
+                    echo "<tr><td colspan='8' style='text-align:center;'>Tidak ada data</td></tr>";
                 }
 
-                // Tutup koneksi
                 $conn->close();
                 ?>
             </tbody>
         </table>
 
-        <!-- Tanda tangan di halaman terakhir -->
         <div class="signature-section">
             <table width="100%">
                 <tr>
                     <td style="text-align: right; vertical-align: bottom; height: 100px">
-                        <p>Kepala Badan BPKAD</p><br>
-                        <br>
-                        <br>
-                        <br>
-                        <u><b>WIWIEN MASRURI,S.STP.M.Si</b></u><br>
+                        <p>Kepala Badan BPKAD</p><br><br><br><br>
+                        <u><b>WIWIEN MASRURI, S.STP, M.Si</b></u><br>
                         <b>NIP. 12341316 200112 1 0901</b>
                     </td>
                 </tr>

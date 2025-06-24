@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
         $_SESSION['role'] = $dataLogin['role'];
 
         echo "<script>alert('Selamat datang" . $dataLogin['nama'] . "!')</script>";
-        echo "<meta http-equiv='refresh' content='0; url=../index.php'>";
+        echo "<meta http-equiv='refresh' content='0; url=../index.php?page=dashboard'>";
     } else {
         echo "<script>alert('Username atau Password salah!')</script>";
         echo "<meta http-equiv='refresh' content='0; url=login_view.php'>";

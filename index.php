@@ -6,7 +6,7 @@ if (!isset($_SESSION['id'])) { // mencek apakah session id belum diset
 include "pengaturan/koneksi.php";
 include "template/sidebar.php";
 include "template/header.php";
-$page = $_GET['page'];
+$page = isset($_GET['page']) ? $_GET['page'] : '';
 switch ($page) {
     case "dashboard":
         include "dashboard/dashboard_view.php";
@@ -14,84 +14,84 @@ switch ($page) {
     // ----------------------------------------
     // untuk folder surat masuk
     case "surat_masuk_read":
-        include "surat masuk/surat_masuk_read.php";
+        include "surat_masuk/surat_masuk_read.php";
         break;
     case "surat_masuk_add":
-        include "surat masuk/surat_masuk_add.php";
+        include "surat_masuk/surat_masuk_add.php";
         break;
     case "surat_masuk_edit":
-        include "surat masuk/surat_masuk_edit.php";
+        include "surat_masuk/surat_masuk_edit.php";
         break;
     case "surat_masuk_delete":
-        include "surat masuk/surat_masuk_delete.php";
+        include "surat_masuk/surat_masuk_delete.php";
         break;
     case "surat_masuk_status":
-        include "surat masuk/surat_masuk_status.php";
+        include "surat_masuk/surat_masuk_status.php";
         break;
     // ----------------------------------------
     // untuk folder surat keluar
     case "surat_keluar_read":
-        include "surat keluar/surat_keluar_read.php";
+        include "surat_keluar/surat_keluar_read.php";
         break;
     case "surat_keluar_add":
-        include "surat keluar/surat_keluar_add.php";
+        include "surat_keluar/surat_keluar_add.php";
         break;
     case "surat_keluar_edit":
-        include "surat keluar/surat_keluar_edit.php";
+        include "surat_keluar/surat_keluar_edit.php";
         break;
     case "surat_keluar_delete":
-        include "surat keluar/surat_keluar_delete.php";
+        include "surat_keluar/surat_keluar_delete.php";
         break;
     case "surat_keluar_status":
-        include "surat keluar/surat_keluar_status.php";
+        include "surat_keluar/surat_keluar_status.php";
         break;
     // ----------------------------------------
     // untuk folder surat perjalanan
     case "surat_perjalanan_read":
-        include "surat perjalanan/surat_perjalanan_read.php";
+        include "surat_perjalanan/surat_perjalanan_read.php";
         break;
     case "surat_perjalanan_add":
-        include "surat perjalanan/surat_perjalanan_add.php";
+        include "surat_perjalanan/surat_perjalanan_add.php";
         break;
     case "surat_perjalanan_edit":
-        include "surat perjalanan/surat_perjalanan_edit.php";
+        include "surat_perjalanan/surat_perjalanan_edit.php";
         break;
     case "surat_perjalanan_delete":
-        include "surat perjalanan/surat_perjalanan_delete.php";
+        include "surat_perjalanan/surat_perjalanan_delete.php";
         break;
     case "surat_perjalanan_status":
-        include "surat perjalanan/surat_perjalanan_status.php";
+        include "surat_perjalanan/surat_perjalanan_status.php";
         break;
     // ----------------------------------------
     // untuk folder surat perintah Tugas
     case "surat_perintah_read":
-        include "surat perintah/surat_perintah_read.php";
+        include "surat_perintah/surat_perintah_read.php";
         break;
     case "surat_perintah_add":
-        include "surat perintah/surat_perintah_add.php";
+        include "surat_perintah/surat_perintah_add.php";
         break;
     case "surat_perintah_edit":
-        include "surat perintah/surat_perintah_edit.php";
+        include "surat_perintah/surat_perintah_edit.php";
         break;
     case "surat_perintah_delete":
-        include "surat perintah/surat_perintah_delete.php";
+        include "surat_perintah/surat_perintah_delete.php";
         break;
     case "surat_perintah_status":
-        include "surat perintah/surat_perintah_status.php";
+        include "surat_perintah/surat_perintah_status.php";
         break;
     // ----------------------------------------
     // untuk folder Kategori surat
     case "kategori_surat_read":
-        include "kategori surat/kategori_surat_read.php";
+        include "kategori_surat/kategori_surat_read.php";
         break;
     case "kategori_surat_add":
-        include "kategori surat/kategori_surat_add.php";
+        include "kategori_surat/kategori_surat_add.php";
         break;
     case "kategori_surat_edit":
-        include "kategori surat/kategori_surat_edit.php";
+        include "kategori_surat/kategori_surat_edit.php";
         break;
     case "kategori_surat_delete":
-        include "kategori surat/kategori_surat_delete.php";
+        include "kategori_surat/kategori_surat_delete.php";
         break;
     // ----------------------------------------
     // untuk folder Pengguna
@@ -137,6 +137,26 @@ switch ($page) {
         break;
     case "disposisi_status":
         include "disposisi/disposisi_status.php";
+        break;
+    // ----------------------------------------
+    // untuk folder pencairan dana
+    case "ocr_pencairan_dana":
+        include "surat_keuangan/index.php";
+        break;
+    case "surat_keuangan_read":
+        include "surat_keuangan/surat_keuangan_read.php";
+        break;
+    case "surat_keuangan_add":
+        include "surat_keuangan/surat_keuangan_add.php";
+        break;
+    case "surat_keuangan_edit":
+        include "surat_keuangan/surat_keuangan_edit.php";
+        break;
+    case "surat_keuangan_delete":
+        include "surat_keuangan/surat_keuangan_delete.php";
+        break;
+    case "surat_keuangan_status":
+        include "surat_keuangan/surat_keuangan_status.php";
         break;
 }
 
