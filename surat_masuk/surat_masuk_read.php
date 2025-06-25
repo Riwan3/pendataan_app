@@ -4,6 +4,7 @@ if (!isset($_SESSION['role'])) {
     die("Akses dilarang. Anda belum login.");
 }
 
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -135,6 +136,7 @@ $query = mysqli_query($konek, $sql);
                             }
 
                             echo "<td>
+                                <a href='?page=surat_masuk_detail&id={$data['id']}' class='btn btn-info btn-sm'>Lihat</a>
                                 <a href='?page=surat_masuk_edit&id={$data['id']}' class='btn btn-warning btn-sm'>Edit</a>
                                 <a href='?page=surat_masuk_delete&id={$data['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Yakin ingin menghapus?\")'>Hapus</a>
                             </td>";

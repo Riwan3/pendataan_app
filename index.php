@@ -6,6 +6,7 @@ if (!isset($_SESSION['id'])) { // mencek apakah session id belum diset
 include "pengaturan/koneksi.php";
 include "template/sidebar.php";
 include "template/header.php";
+require_once 'log_akses/log_helper.php';
 $page = isset($_GET['page']) ? $_GET['page'] : '';
 switch ($page) {
     case "dashboard":
@@ -28,6 +29,9 @@ switch ($page) {
     case "surat_masuk_status":
         include "surat_masuk/surat_masuk_status.php";
         break;
+    case "surat_masuk_detail":
+        include "surat_masuk/surat_masuk_detail.php";
+        break;
     // ----------------------------------------
     // untuk folder surat keluar
     case "surat_keluar_read":
@@ -44,6 +48,9 @@ switch ($page) {
         break;
     case "surat_keluar_status":
         include "surat_keluar/surat_keluar_status.php";
+        break;
+    case "surat_keluar_detail":
+        include "surat_keluar/surat_keluar_detail.php";
         break;
     // ----------------------------------------
     // untuk folder surat perjalanan
@@ -157,6 +164,18 @@ switch ($page) {
         break;
     case "surat_keuangan_status":
         include "surat_keuangan/surat_keuangan_status.php";
+        break;
+    case "surat_keuangan_detail":
+        include "surat_keuangan/surat_keuangan_detail.php";
+        break;
+    case "dokumen_sp2d_detail":
+        include "surat_keuangan/dokumen_sp2d_detail.php";
+        break;
+
+    // ----------------------------------------
+    // untuk folder log akses
+    case "log_akses":
+        include "log_akses/index.php";
         break;
 }
 

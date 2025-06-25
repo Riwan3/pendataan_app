@@ -169,6 +169,22 @@
                                                 <span class="hide-menu">Laporan Surat <br>keuangan</span>
                                             </a>
                                         </li>
+                                        <li class="sidebar-item">
+                                            <a class="sidebar-link" href="surat_keuangan/dokumen_sp2d_kategori_print.php" target="_blank" aria-expanded="false">
+                                                <span>
+                                                    <i class="ti ti-printer"></i>
+                                                </span>
+                                                <span class="hide-menu">Laporan <br>Dokumen SP2D</span>
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-item">
+                                            <a class="sidebar-link" href="log_akses/log_akses_print.php" target="_blank" aria-expanded="false">
+                                                <span>
+                                                    <i class="ti ti-printer"></i>
+                                                </span>
+                                                <span class="hide-menu">Laporan <br>Log Akses</span>
+                                            </a>
+                                        </li>
                                     <?php endif; ?>
                                     </div>
                                 </div>
@@ -209,6 +225,14 @@
                                         </div>
                                     </div>
                                 </div>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link" href="?page=log_akses" aria-expanded="false">
+                                        <span>
+                                            <i class="ti ti-currency-dollar"></i>
+                                        </span>
+                                        <span class="hide-menu">Log Akses <br> dokumen</span>
+                                    </a>
+                                </li>
                             <?php endif; ?>
                             <li class="sidebar-item">
                                 <a class="sidebar-link" href="?page=ocr_pencairan_dana" aria-expanded="false">

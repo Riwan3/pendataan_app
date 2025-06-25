@@ -14,6 +14,7 @@ if (isset($_POST['login'])) {
 
         $_SESSION['id'] = $dataLogin['id'];
         $_SESSION['role'] = $dataLogin['role'];
+        $_SESSION['user_id'] = $dataLogin['id'];
 
         echo "<script>alert('Selamat datang" . $dataLogin['nama'] . "!')</script>";
         echo "<meta http-equiv='refresh' content='0; url=../index.php?page=dashboard'>";

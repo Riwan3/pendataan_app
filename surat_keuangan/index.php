@@ -43,13 +43,18 @@ if (isset($_GET['ocr']) && is_numeric($_GET['ocr'])) {
                 if ($response !== false) {
                     $json = json_decode($response, true);
                     $kategori = $json['kategori'] ?? 'Tidak diketahui';
+                    // Simpan hasil ke tabel dokumen_sp2d
+                    $stmt = $conn->prepare("INSERT INTO dokumen_sp2d (nama_file, hasil_ocr, kategori, surat_keuangan_id) VALUES (?, ?, ?, ?)");
+                    $stmt->bind_param("sssi", $row['upload_file'], $ocrResult, $kategori, $id);
+                    $stmt->execute();
+                    $stmt->close();
                 } else {
                     $kategori = 'Gagal klasifikasi';
                 }
 
                 $successMsg = 'OCR berhasil diproses.';
             } catch (Exception $e) {
-                $error = 'Gagal menjalankan OCR: ' . $e->getMessage();
+                // $error = 'Gagal menjalankan OCR: ' . $e->getMessage();
             }
         } else {
             $error = 'File tidak ditemukan.';
